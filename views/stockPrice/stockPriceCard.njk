@@ -1,0 +1,33 @@
+<article class="productInfo card" id="stockPriceCard">
+    <h3 class="card-header">
+        <a href="#">{{ stock.stockCode }}</a>
+    </h3>
+    <table class="table card-body">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Price</th>
+                <th scope="col">Open</th>
+                <th scope="col">Gains</th>
+                <th scope="col">Quantity Available</th>
+                {% if userContext %}
+                    <th scope="col">Quantity You Own</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            <td id="stockCardPrice">£{{ stock.price/100 }}</td>
+            <td id="stockCardOpen">£{{ stock.openValue/100 }}</td>
+            <td id="stockCardGains">£{{ stock.gains/100 }}</td>
+            <td id="stockCardQuantity">{{ stock.quantity }}</td>
+            {% if userContext %}
+                <td>{{ stock.quantity }}</td>
+            {% endif %}
+        </tbody>
+    </table>
+    {% if userContext %}
+        <div class="row card-body">
+            <a class="btn btn-outline-primary col" id="BuyButton" href="transaction/?stock={{ stock.stockCode }}">Buy</a>
+            <a class="btn btn-outline-primary col" id="SellButton"href="transaction/?stock={{ stock.stockCode }}">Sell</a>
+        </div>
+    {% endif %}
+</article>

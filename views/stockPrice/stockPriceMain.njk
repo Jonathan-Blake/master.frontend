@@ -1,0 +1,14 @@
+{% extends "layout.njk" %}
+{% block css %}
+	{{ super() }}
+	<link href="stylesheets/responsiveCardGroup.css" type="text/css" rel="stylesheet" >
+{% endblock %}
+{% block content %}
+    <script src="javascripts/renderStockController.js"></script>
+    <script >
+        page = '{{ pageRequestParams.page }}'
+        size = '{{ pageRequestParams.size }}'
+        beginPolling(page, size);
+    </script>
+    <section class="col py-md-3 pl-md-5 bd-content" id="stockPriceDisplay"></section>
+{% endblock %}

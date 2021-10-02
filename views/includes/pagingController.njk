@@ -1,0 +1,45 @@
+<div style="padding-top: 0.5em">
+    <nav aria-label="Data Paging Controller">
+        <ul class="pagination">
+            {% if page.page.number !=0 %}
+            <li class="page-item">
+                <a class="page-link" href="/?page=0&size={{page.page.size}}" aria-label="First">
+                    <span aria-hidden="true">&laquo;</span><span aria-hidden="true">&laquo;</span>
+                    1
+                </a>
+            </li>
+            {% endif %}
+            {% if page.page.number >= 2  %}
+            <li class="page-item">
+                <a class="page-link" href="/?page={{page.page.number-1}}&size={{page.page.size}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    {{ page.page.number }}
+                </a>
+            </li>
+            {% endif %}
+            {% if page.page.totalPages !=1 %}
+            <li class="page-item">
+                <a class="page-link" href="">
+                    {{ page.page.number+1 }}
+                </a>
+            </li>
+            {% endif %}
+            {% if page.page.number+1 < page.page.totalPages -1 %}
+            <li class="page-item">
+                <a class="page-link" href="/?page={{page.page.number+1}}&size={{page.page.size}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    {{ page.page.number+2 }}
+                </a>
+            </li>
+            {% endif %}
+            {% if page.page.number != page.page.totalPages -1 %}
+            <li class="page-item">
+                <a class="page-link" href="/?page={{page.page.totalPages-1}}&size={{page.page.size}}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                    {{ page.page.totalPages }}
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

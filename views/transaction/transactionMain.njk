@@ -1,0 +1,47 @@
+{% extends "layout.njk" %}
+{% block content %}
+    <section class="col py-md-3 pl-md-5 bd-content" id="">
+        <h2>
+            Trading Stock {{ stockCode }}
+        </h2>
+        <form id="transactionForm" action="/transaction" method="post">
+            <input type="hidden" id="stockCode" name="stockCode" value="{{ stockCode }}">
+            <div class="form-group row">
+                <label for="inputQuantity" class="col-sm-2 col-form-label">Number to trade</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputQuantity" name="quantity" placeholder="0" min="1">
+                </div>
+                <label for="inputQuantity" class="col-sm-2 col-form-label">Purchase or Sell</label>
+
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="TransactionTypePurchase" name="transactionType" value="BUY" required checked>
+                    <label class="custom-control-label" for="TransactionTypePurchase">Purchase</label>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                    <input type="radio" class="custom-control-input" id="TransactionTypeSell" name="transactionType" value="SELL" required>
+                    <label class="custom-control-label" for="TransactionTypeSell">Sell</label>
+                </div>
+
+            </div>
+            <div class="form-group.inline row">
+                <label for="currentPrice" class="col-sm-2 col-form-label">Current Price</label>
+                <div class="col-sm-10" >
+                    <p class="form-control-plaintext" id="currentPrice"></p>
+                </div>
+                <label for="currentPrice" class="col-sm-2 col-form-label">Total Value</label>
+                <div class="col-sm-10">
+                    <p class="form-control-plaintext" id="totalValue"></p>
+                </div>
+            </div>
+            <button type="submit" value="Submit">Submit</button>
+        </form>
+
+        <script src="../javascripts/trackCurrentPriceController.js"></script>
+            {# <p>C:\Users\Jonathan\Desktop\javascript\express\stock_web_six\public\javascripts\trackCurrentPriceController.js</p> #}
+        <script >
+            stockCode = '{{ stockCode }}'
+            beginPolling(stockCode);
+        </script>
+    </section>
+    {# <p id="PleaseWork">Please Work</p> #}
+{% endblock %}

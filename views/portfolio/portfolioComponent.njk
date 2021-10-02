@@ -1,0 +1,27 @@
+
+{% for stock, stockDetails in page.portfolio %}
+    <div>
+        hi
+    </div>
+{% endfor %}
+<table class="table">
+    <thead class="thead-light .table-striped">
+        <tr>
+            <th scope="col">Stock</th>
+            <th scope="col">Current Price</th>
+            <th scope="col">Average Purchase Price</th>
+            <th scope="col">Quantity Owned</th>
+            <th scope="col">Total Value</th>
+            <th scope="col">Trading Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stockCode, stockDetails in page.portfolio %}
+            {% if stockCode =='funds' %}
+                {% include 'portfolio/fundsRow.njk' %}
+            {% else %}
+                {% include 'portfolio/portfolioRow.njk' %}
+            {% endif%}
+        {% endfor %}
+    </tbody>
+</table>

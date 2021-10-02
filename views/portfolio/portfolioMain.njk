@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+{% block css %}
+	{{ super() }}
+	<link href="stylesheets/responsiveCardGroup.css" type="text/css" rel="stylesheet" >
+{% endblock %}
+{% block content %}
+    <script src="javascripts/renderPortfolio.js"></script>
+    <script >
+        beginPolling();
+    </script>
+    <section class="col py-md-3 pl-md-5 bd-content" id="portfolioDisplay"></section>
+{% endblock %}

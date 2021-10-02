@@ -1,0 +1,8 @@
+<h5 class="col">Company Name</h5>
+<a class="col-auto btn btn-outline-primary" href="#">Do I need something else</a>
+{% if userContext %}
+    <a class="col-auto btn btn-outline-primary" id="portfolioButton" href="/portfolio">User Profile</a>
+    <a class="col-auto btn btn-outline-primary" id="logoutButton" href="/logout">Sign Out</a>
+{% else %}
+    <a class="btn btn-outline-primary" id="loginButton" href="/login">Sign up</a>
+{% endif %}

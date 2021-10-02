@@ -1,0 +1,11 @@
+<div class="row card-group">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+        <!-- Each product row contains info of 3 elements -->
+        {% for stock in page._embedded.stockResponseList %}
+            <div class="col mb-4">
+                {% include 'stockPrice/stockPriceCard.njk' %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'includes/pagingController.njk' %}
