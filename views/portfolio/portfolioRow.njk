@@ -1,13 +1,13 @@
 <tr>
     <td>{{ stockCode }}</td>
-    <td>{{ stockDetails.price }}</td>
-    <td>{{ stockDetails.averagePurchase }}</td>
+    <td>£{{ stockDetails.currentPrice/100 }}</td>
+    <td>£{{ stockDetails.averagePurchase/100 }}</td>
     <td>{{ stockDetails.quantity }}</td>
-    <td>{{ stockDetails.quantity * stockDetails.price }}</td>
+    <td>£{{ stockDetails.quantity * stockDetails.currentPrice/100 }}</td>
     <td>
         <div class="btn-group" style="width:100%" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" disabled="disabled">Buy</button>
-            <button type="button" class="btn btn-secondary">Sell</button>
+            <a class="btn btn-outline-primary col" id="BuyButton" href="transaction/?stock={{ stockCode }}">Buy</a>
+            <a class="btn btn-outline-primary col" id="SellButton"href="transaction/?stock={{ stockCode }}">Sell</a>
         </div>
     </td>
 </tr>

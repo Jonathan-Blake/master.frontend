@@ -9,9 +9,6 @@
                 <th scope="col">Open</th>
                 <th scope="col">Gains</th>
                 <th scope="col">Quantity Available</th>
-                {% if userContext %}
-                    <th scope="col">Quantity You Own</th>
-                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -19,9 +16,6 @@
             <td id="stockCardOpen">£{{ stock.openValue/100 }}</td>
             <td id="stockCardGains">£{{ stock.gains/100 }}</td>
             <td id="stockCardQuantity">{{ stock.quantity }}</td>
-            {% if userContext %}
-                <td>{{ stock.quantity }}</td>
-            {% endif %}
         </tbody>
     </table>
     {% if userContext %}

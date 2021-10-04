@@ -16,12 +16,12 @@ router.get('/portfolioData', function(req, res, next) {
   if (req.query.page) {
     params['page'] = req.query.page;
   }
-  headers = {
-    Authorization: req.userContext ?
-    `Bearer ${req.userContext.tokens.access_token}`:'',
-  };
+  // headers = {
+  //   Authorization: req.userContext ?
+  //   `Bearer ${req.userContext.tokens.access_token}`:'',
+  // };
   console.log('About to request Data');
-  request.get('http://localhost:8081/trader/portfolio', {params: params, headers: headers})
+  request.get('http://localhost:8081/trader/portfolio', {params: params})
       .then((stockPage) => {
         console.log('Successful request '+ stockPage);
         res.locals.JSON = JSON;
