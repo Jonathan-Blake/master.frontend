@@ -106,7 +106,6 @@ app.use(function(req, res, next) {
       console.log('Logged in user');
       request.interceptors.request.use((request)=>{
         request.headers.Authorization = `Bearer ${req.userContext.tokens.access_token}`;
-        console.log(JSON.stringify(req.userContext.tokens));
         return request;
       });
     } else {

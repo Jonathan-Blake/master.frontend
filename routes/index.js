@@ -25,7 +25,7 @@ router.get('/stockData', function(req, res, next) {
   }
   request.get('http://localhost:8081/stock', {params: params})
       .then((stockPage) => {
-        console.log("Data Retrieved");
+        console.log('Data Retrieved');
         res.locals.JSON = JSON;
         res.render('stockPrice/stockPriceComponent', {
           page: stockPage.data,
@@ -35,6 +35,24 @@ router.get('/stockData', function(req, res, next) {
         console.log('Error Retrieving rendered stock component data '+ err);
         res.render( 'error');
       });
+});
+router.get('/stockData/report', function(req, res, next) {
+  const params = {};
+  if (req.query.size) {
+    params['size'] = req.query.size;
+  }
+  if (req.query.page) {
+    params['page'] = req.query.page;
+  }
+  params['reportFormat'] = 'CSV';
+  request.get('http://localhost:8081/stock/report', {params: params})
+      .then((stockPage) => {
+        console.log('Report Submitted');
+      })
+      .catch((err) => {
+        console.log('Error Retrieving rendered stock component data '+ err);
+      });
+  res.redirect('/?page='+req.query.page+'&stock='+req.query.size);
 });
 
 router.get('/stockData/:stockId', function(req, res, next) {
@@ -58,9 +76,6 @@ router.get('/info/stockData/:stockId', function(req, res, next) {
   if (req.query.page) {
     params['page'] = req.query.page;
   }
-  // headers = {
-  //   Authorization: req.userContext ? `Bearer ${req.userContext.tokens.access_token}` : '',
-  // };
   request.get('http://localhost:8081/stock/'+req.params.stockId, {params: params})
       .then((stockInfo) => {
         res.setHeader('Content-Type', 'application/json');
@@ -75,12 +90,10 @@ router.get('/info/stockData/:stockId', function(req, res, next) {
           console.log(error.response.headers);
         } else if (error.request) {
           // The request was made but no response was received
-          console.log('Error Request');
-          // console.log(error.request);
+          console.log('request was made but no response was received');
         } else {
         // Something happened in setting up the request that triggered an Error
-          console.log('Error message');
-          // console.log('Error', error.message);
+          console.log('Something happened in setting up the request that triggered an Error');
         }
       });
 });

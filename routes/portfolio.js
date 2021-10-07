@@ -16,10 +16,6 @@ router.get('/portfolioData', function(req, res, next) {
   if (req.query.page) {
     params['page'] = req.query.page;
   }
-  // headers = {
-  //   Authorization: req.userContext ?
-  //   `Bearer ${req.userContext.tokens.access_token}`:'',
-  // };
   console.log('About to request Data');
   request.get('http://localhost:8081/trader/portfolio', {params: params})
       .then((stockPage) => {
@@ -31,6 +27,19 @@ router.get('/portfolioData', function(req, res, next) {
         console.log('Error Retrieving Portfolio data '+ err);
         res.render( 'error');
       });
+});
+router.get('/report', function(req, res, next) {
+  console.log('Preparing Request');
+  const params = {};
+  params['reportFormat'] = 'CSV';
+  request.get('http://localhost:8081/trader/portfolio/report', {params: params})
+      .then((_) => {
+        console.log('Portfolio Report Sent');
+      })
+      .catch((err) => {
+        console.log('Error Retrieving Portfolio data '+ err);
+      });
+  res.redirect('/portfolio');
 });
 
 module.exports = router;

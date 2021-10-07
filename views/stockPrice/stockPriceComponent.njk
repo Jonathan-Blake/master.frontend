@@ -8,4 +8,10 @@
         {% endfor %}
     </div>
 </div>
+    {{ page.page | dump }}
+{% if userContext %}
+    <a class="btn btn-outline-primary col" id="reportLink" href="stockData/report?page={{ page.page.number }}&size={{ page.page.size }}">
+    Get Data as Report</a>
+{% endif %}
+
 {% include 'includes/pagingController.njk' %}
